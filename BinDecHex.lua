@@ -48,9 +48,13 @@
  * THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+/* Thanks to Bernard Clabots for string.gfind to make forward compatible to Lua 5.2 */
+
 --]]
 
-module(..., package.seeall);
+module("BinDecHex", ..., package.seeall);
+
+string.gfind = string.gfind or string.gmatch
 
 local hex2bin = {
 	["0"] = "0000",
@@ -135,7 +139,7 @@ local i = 0
 	for i in string.gfind(s, ".") do
 		i = string.lower(i)
 
-		ret = ret..hex2bin[i].." "
+		ret = ret..hex2bin[i]
 
 	end
 
